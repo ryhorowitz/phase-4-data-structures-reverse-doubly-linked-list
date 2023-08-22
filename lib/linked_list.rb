@@ -1,3 +1,4 @@
+require 'pry'
 require_relative './node'
 
 class LinkedList
@@ -9,6 +10,19 @@ class LinkedList
   end
 
   def reverse!
-    # your code here
+    return if @head.nil? && @tail.nil?
+    return if @head == @tail
+
+    curr = @head
+    while curr
+      temp = curr.prev_node
+      binding.pry
+      curr.prev_node = curr.next_node
+      curr.next_node = temp
+      curr = curr.prev_node
+    end
+    temp = @head
+    @head = @tail
+    @tail = temp
   end
 end
